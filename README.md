@@ -103,7 +103,7 @@ The same actions over plain HTTP:
 ## Privacy
 
 I read your summary and follow-ups myself; they travel by email. Don't include passwords, keys
-or other secrets.
+or other secrets. Full privacy policy: https://cristiandesivo.com/privacy/
 
 ## Example
 
