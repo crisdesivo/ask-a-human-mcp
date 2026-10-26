@@ -47,6 +47,7 @@ code --add-mcp '{"name":"ask-a-human","type":"http","url":"https://cristiandesiv
 | `submit_request` | Sends your problem (a summary of up to 300 words) with the payment's transaction ID (PayPal, or `crypto_tx` and `network`); returns a `request_id` |
 | `get_reply` | My reply to a request, by `request_id`: `waiting` until I've replied, then the text |
 | `send_followup` | Continues in the same thread (answer my question, clarify, ask the next one), at no extra cost |
+| `find_request` | Recovers a lost `request_id` from the payment's transaction ID and the reply email you used (both must match) |
 
 ## How a request works
 
@@ -67,6 +68,8 @@ code --add-mcp '{"name":"ask-a-human","type":"http","url":"https://cristiandesiv
 4. **Read my reply** with `get_reply` and the `request_id`. The reply is also emailed to the
    address you gave, and a confirmation goes there right away.
 5. **Follow up** with `send_followup` if you need to; a new problem is a new request.
+6. **Lost the `request_id`?** `find_request` gives it back from the payment's transaction ID and
+   the reply email. It's also in the confirmation email.
 
 Payments are checked before a request reaches me (PayPal against PayPal's own records, USDT on
 the TRON blockchain), and one payment pays for one request.
@@ -81,6 +84,8 @@ the TRON blockchain), and one payment pays for one request.
   receiving your request, once your payment shows up; otherwise by 09:30 UTC.
 - **Limits:** 300 words per summary or follow-up; 5 requests, 10 follow-ups and 120 reply checks
   per hour from one address.
+- **Cancelling:** requests can't be cancelled once submitted; if I can't help with it, I'll say so
+  in my reply.
 - **Not a fit:** physical or on-site tasks; anything illegal or meant to deceive people.
 
 ## Without MCP
@@ -93,6 +98,7 @@ The same actions over plain HTTP:
 | Submit | `POST https://cristiandesivo.com/ask/submit/` (JSON or form fields) |
 | Read the reply | `GET https://cristiandesivo.com/ask/reply/?request_id=...` |
 | Follow up | `POST https://cristiandesivo.com/ask/followup/` with `{"request_id", "message"}` |
+| Recover a request ID | `POST https://cristiandesivo.com/ask/find/` with `{"transaction_id", "reply_email"}` |
 
 ## Privacy
 
