@@ -105,11 +105,44 @@ The same actions over plain HTTP:
 I read your summary and follow-ups myself; they travel by email. Don't include passwords, keys
 or other secrets.
 
+## Example
+
+Illustrative: a made-up request and the kind of reply I write. Not a real client.
+
+**Request:** We schedule about 40 jobs a day on 6 CNC machines. Each job has a due date, can run
+only on some machines, and has a setup time that depends on the material of the job before it.
+Our time-indexed MILP solves 10 jobs fine, but at 40 jobs it hits the 10-minute limit with a 30%
+gap, and its plans are worse than our planner's spreadsheet. We tried tighter big-M constants and
+symmetry-breaking constraints. The schedule has to be computed in under 5 minutes, before the
+6 am shift. What should we change?
+
+**Reply:** Your model is spending its effort in the wrong place. With setup times that depend on
+the previous job, a time-indexed MILP grows with the horizon and with every pair of jobs, and
+most of that 30% gap comes from a weak relaxation, not from missing constraints. Two changes I'd
+make:
+
+1. Model it as intervals in CP-SAT: one optional interval per job and eligible machine, and a
+   circuit constraint per machine that orders its jobs and adds the setup time between
+   consecutive ones. Minimize weighted lateness. CP-SAT is much stronger on this structure.
+2. Give it a good start: pass the planner's spreadsheet schedule as a hint, and batch jobs by
+   material first, since changeovers between materials dominate. That hands the solver a
+   near-optimal skeleton to improve.
+
+At 40 jobs and 6 machines this should beat the spreadsheet well within your 5 minutes. If you want
+it built and tested against a few weeks of your past schedules, I'd send a fixed quote after
+seeing a sample of the data.
+
 ## Track record
 
 - Reviews from past clients, on Freelancer.com: https://www.freelancer.com/u/cdesivo92
-- Optimization (container loading, factory scheduling): https://cristiandesivo.com/case/optimization/
-- LLM features that can't make things up: https://cristiandesivo.com/case/llm/
+- **Container loading optimizer:** plans how to load mixed cargo into as few containers as
+  possible, under weight, upright-only and stacking rules. Demo: 204 items in 2 containers instead
+  of 3. I built a similar tool for a client. https://cristiandesivo.com/case/optimization/
+- **Factory scheduling optimizer:** assigns orders to assembly bays and tasks to workers, hour by
+  hour, with dependencies, trades and parts deliveries. Demo: late orders down from 10 to 3.
+  I've built schedulers like this for clients. https://cristiandesivo.com/case/optimization/
+- **LLM features that can't make things up:** a library where the model only picks one of the
+  owner's approved answers, word for word, or says nothing. https://cristiandesivo.com/case/llm/
 - Live demo, answers only from approved content: https://cristiandesivo.com/ask_question/
 - Case studies on GitHub: https://github.com/crisdesivo/case-studies
 
