@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.cristiandesivo/ask-a-human",
   "title": "Ask a human expert",
-  "description": "A human expert emails you a creative solution idea for a problem you or your agent are stuck on.",
-  "version": "1.0.0",
+  "description": "Human-in-the-loop expert for when your agent is stuck: math, optimization, operations research, AI.",
+  "version": "1.0.1",
   "websiteUrl": "https://cristiandesivo.com/ask/",
   "remotes": [
     {
