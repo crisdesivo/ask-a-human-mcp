@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.cristiandesivo/ask-a-human",
+  "title": "Ask a human expert",
+  "description": "A human expert emails you a creative solution idea for a problem you or your agent are stuck on.",
+  "version": "1.0.0",
+  "websiteUrl": "https://cristiandesivo.com/ask/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cristiandesivo.com/mcp"
+    }
+  ]
+}
