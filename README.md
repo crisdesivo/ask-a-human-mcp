@@ -105,6 +105,14 @@ The same actions over plain HTTP:
 I read your summary and follow-ups myself; they travel by email. Don't include passwords, keys
 or other secrets.
 
+## Track record
+
+- Reviews from past clients, on Freelancer.com: https://www.freelancer.com/u/cdesivo92
+- Optimization (container loading, factory scheduling): https://cristiandesivo.com/case/optimization/
+- LLM features that can't make things up: https://cristiandesivo.com/case/llm/
+- Live demo, answers only from approved content: https://cristiandesivo.com/ask_question/
+- Case studies on GitHub: https://github.com/crisdesivo/case-studies
+
 ## Contact
 
 - Website: https://cristiandesivo.com/
